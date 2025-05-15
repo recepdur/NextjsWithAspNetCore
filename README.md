@@ -81,3 +81,21 @@ Backend aşağıdaki API endpointlerini sunar:
 - React
 - TypeScript
 - Tailwind CSS
+
+
+Next.js ve ASP.NET Core Uygulamasını Plesk Paneline Birlikte Tek uygulama olarak Deploy Etmek istiyorum
+
+
+cd /Users/recepdur/Documents/Projects/NextjsWithAspNetCore/backend && dotnet publish -c Release -o ./publish
+
+cd /Users/recepdur/Documents/Projects/NextjsWithAspNetCore/frontend && npm run build
+
+cp /Users/recepdur/Documents/Projects/NextjsWithAspNetCore/backend/web.config /Users/recepdur/Documents/Projects/NextjsWithAspNetCore/backend/publish/
+
+cd /Users/recepdur/Documents/Projects/NextjsWithAspNetCore && \
+mkdir -p deploy/frontend deploy/api && \
+cp -R frontend/out/* deploy/frontend/ && \
+cp -R backend/publish/* deploy/api/ && \
+cp PLESK_DEPLOY_KILAVUZU.md deploy/ && \
+cd deploy && \
+zip -r ../NextjsWithAspNetCore_Deploy.zip .
